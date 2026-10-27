@@ -1,0 +1,13 @@
+<div class="card h-100">
+    <img [src]="imagen()" [alt]="nombre()" class="card-img-top"
+        style="height: 150px; object-fit: cover;">
+
+    <div class="card-body">
+        <h5 class="card-title">{{ nombre() }}</h5>
+        <p class="card-text">{{ ingredientes() }}</p>
+        <p class="fw-bold">{{ precio() }} €</p>
+        <a href="#pedido" class="btn btn-secondary btn-sm">
+            Seleccionar
+        </a>
+    </div>
+</div>

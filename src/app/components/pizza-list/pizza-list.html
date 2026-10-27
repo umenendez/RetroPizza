@@ -1,0 +1,14 @@
+<div id="pizzas" class="mb-4">
+    <h2 class="mb-3">Nuestras pizzas</h2>
+
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-4 g-3">
+
+        @for (pizza of pizzas; track $index) {
+            <div class="col">
+                <app-pizza-card [nombre]="pizza.nombre" [precio]="pizza.precio" [imagen]="pizza.imagen"
+                    [ingredientes]="pizza.ingredientes" />
+            </div>
+        }
+
+    </div>
+</div>
