@@ -1,13 +1,6 @@
 import { Component } from '@angular/core';
 import { PizzaCard } from '../pizza-card/pizza-card';
-
-interface Pizza {
-  id: number;
-  nombre: string;
-  precio: number;
-  imagen: string;
-  ingredientes: string[];
-}
+import { Pizza } from '../../models/pizza.model';
 
 @Component({
   selector: 'app-pizza-list',
