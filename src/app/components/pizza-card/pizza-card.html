@@ -1,13 +1,22 @@
 <div class="card h-100">
-    <img [src]="imagen()" [alt]="nombre()" class="card-img-top"
-        style="height: 150px; object-fit: cover;">
+    <img [src]="imagen()" [alt]="nombre()" class="card-img-top" style="height: 150px; object-fit: cover;">
 
     <div class="card-body">
         <h5 class="card-title">{{ nombre() }}</h5>
         <p class="card-text">{{ ingredientes() }}</p>
         <p class="fw-bold">{{ precio() }} €</p>
-        <a href="#pedido" class="btn btn-secondary btn-sm">
-            Seleccionar
-        </a>
+
+        <form (submit)="$event.preventDefault(); pedirPizza()">
+            <label class="form-label">Cantidad</label>
+
+            <input #unidades class="form-control mb-2" type="number" min="1" step="1" value="1"
+                (input)="cantidad = +unidades.value">
+
+            <button class="btn btn-primary w-100" type="submit">
+                Añadir al pedido
+            </button>
+        </form>
+
+
     </div>
 </div>
