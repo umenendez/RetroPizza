@@ -19,5 +19,11 @@
                 </li>
             </ul>
         </div>
+
+        <form class="d-flex" role="search" (submit)="$event.preventDefault()">
+            <input class="form-control me-2" type="search" placeholder="Buscar pizza..." aria-label="Buscar pizza"
+                #busqueda (input)="buscarPizza(busqueda.value)">
+        </form>
+
     </div>
 </nav>

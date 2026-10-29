@@ -2,14 +2,37 @@ import { Component } from '@angular/core';
 import { PizzaCard } from '../pizza-card/pizza-card';
 import { Pizza } from '../../models/pizza.model';
 
+import { input } from '@angular/core';
+
+
+
 @Component({
   selector: 'app-pizza-list',
   imports: [PizzaCard],
   templateUrl: './pizza-list.html',
   styleUrl: './pizza-list.scss'
+
 })
+
+
 export class PizzaList {
 
+
+
+  filtrarPizzas() {
+    const texto = this.textoBusqueda().toLowerCase().trim();
+
+    return this.pizzas.filter(pizza =>
+      pizza.nombre.toLowerCase().includes(texto) ||
+      pizza.ingredientes.some(ingrediente =>
+        ingrediente.toLowerCase().includes(texto)
+      )
+    );
+  }
+
+
+
+  textoBusqueda = input<string>('');
   pizzas: Pizza[] = [
     {
       id: 1,

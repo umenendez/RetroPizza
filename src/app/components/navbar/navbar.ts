@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, output } from '@angular/core';
 
 @Component({
   selector: 'app-navbar',
@@ -6,6 +6,12 @@ import { Component } from '@angular/core';
   templateUrl: './navbar.html',
   styleUrl: './navbar.scss'
 })
+
 export class Navbar {
-  
+  textoBusqueda = output<string>();
+
+  buscarPizza(texto: string) {
+    this.textoBusqueda.emit(texto);
+  }
 }
+

@@ -1,7 +1,11 @@
 <section class="container py-4">
-    <app-navbar />
+
+    <app-navbar (textoBusqueda)="filtrarPorNombre($event)" />
+
     <app-header />
-    <app-pizza-list />
+
+    <app-pizza-list [textoBusqueda]="textoBusqueda" />
+
     <app-order-form />
     <app-footer />
 </section>
