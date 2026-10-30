@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { PizzaCard } from '../pizza-card/pizza-card';
 import { Pizza } from '../../models/pizza.model';
 
-import { input } from '@angular/core';
+import { input, output } from '@angular/core';
 
 
 
@@ -16,7 +16,19 @@ import { input } from '@angular/core';
 
 
 export class PizzaList {
+  cantidadPedido = output<{
+  nombre: string;
+  precio: number;
+  cantidad: number;
+}>();
 
+recibirPedido(item: {
+  nombre: string;
+  precio: number;
+  cantidad: number;
+}) {
+  this.cantidadPedido.emit(item);
+}
 
 
   filtrarPizzas() {

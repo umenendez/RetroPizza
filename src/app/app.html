@@ -4,8 +4,10 @@
 
     <app-header />
 
-    <app-pizza-list [textoBusqueda]="textoBusqueda" />
+    <app-pizza-list [textoBusqueda]="textoBusqueda" (cantidadPedido)="agregarAlPedido($event)">
+    </app-pizza-list>
 
-    <app-order-form />
+    <app-order-form [pedido]="pedido" (pedidoCompletado)="finalizarPedido()">
+    </app-order-form>
     <app-footer />
 </section>

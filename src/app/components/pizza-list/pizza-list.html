@@ -1,5 +1,5 @@
 
-<div id="pizzas" class="mb-4">
+<div id="pizzas" class="mb-4" tabindex="-1">
     <h2 class="mb-3">Nuestras pizzas</h2>
 
     <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-4 g-3">
@@ -9,7 +9,8 @@
                     [nombre]="pizza.nombre"
                     [precio]="pizza.precio"
                     [imagen]="pizza.imagen"
-                    [ingredientes]="pizza.ingredientes">
+                    [ingredientes]="pizza.ingredientes"
+                    (cantidadPedido)="recibirPedido($event)">
                 </app-pizza-card>
             </div>
         } @empty {
