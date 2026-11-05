@@ -1,5 +1,4 @@
-
-<div id="pedido" class="border rounded p-4 mb-4">
+<div class="border rounded p-4 mb-4">
 
     @if (gracias) {
         <div class="text-center">
@@ -13,9 +12,9 @@
 
         <h4 class="mt-4">Tu pedido acumulado</h4>
 
-        @if (pedido().length > 0) {
+        @if (pedidoService.items.length > 0) {
             <ul class="list-group mb-3">
-                @for (item of pedido(); track item.nombre) {
+                @for (item of pedidoService.items; track item.nombre) {
                     <li class="list-group-item d-flex justify-content-between align-items-center">
                         <div>
                             <strong>{{ item.nombre }}</strong>
@@ -29,7 +28,7 @@
             </ul>
 
             <div class="text-end mb-4">
-                <h4>Total: {{ totalPedido() }} €</h4>
+                <h4>Total: {{ pedidoService.total() }} €</h4>
             </div>
         } @else {
             <p class="text-muted">Todavía no has añadido ninguna pizza.</p>
@@ -164,7 +163,7 @@
             <button
                 type="submit"
                 class="btn btn-secondary"
-                [disabled]="pedido().length === 0">
+                [disabled]="pedidoService.items.length === 0">
                 Realizar pago
             </button>
 

@@ -1,11 +1,12 @@
-
-import { Component, input, output } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import {
   FormControl,
   FormGroup,
   ReactiveFormsModule,
   Validators
 } from '@angular/forms';
+import { ItemPedido } from '../../models/item-pedido.model';
+import { PedidoService } from '../../services/pedido.service';
 
 @Component({
   selector: 'app-order-form',
@@ -15,13 +16,7 @@ import {
 })
 export class OrderForm {
 
-  pedido = input<{
-    nombre: string;
-    precio: number;
-    cantidad: number;
-  }[]>([]);
-
-  pedidoCompletado = output<void>();
+  pedidoService = inject(PedidoService);
 
   gracias = false;
 
@@ -36,19 +31,8 @@ export class OrderForm {
     bizum: new FormControl('')
   });
 
-  subtotal(item: {
-    nombre: string;
-    precio: number;
-    cantidad: number;
-  }) {
+  subtotal(item: ItemPedido) {
     return item.precio * item.cantidad;
-  }
-
-  totalPedido() {
-    return this.pedido().reduce(
-      (total, item) => total + this.subtotal(item),
-      0
-    );
   }
 
   cambiarMetodoPago() {
@@ -79,7 +63,7 @@ export class OrderForm {
   }
 
   sendOrder() {
-    if (this.pedido().length === 0) {
+    if (this.pedidoService.items.length === 0) {
       return;
     }
 
@@ -88,18 +72,7 @@ export class OrderForm {
       return;
     }
 
+    this.pedidoService.vaciar();
     this.gracias = true;
-
-    this.pedidoCompletado.emit();
-
-    this.orderForm.reset({
-      hora: '',
-      direccion: '',
-      metodoPago: 'tarjeta',
-      tarjeta: '',
-      bizum: ''
-    });
-
-    this.cambiarMetodoPago();
   }
 }

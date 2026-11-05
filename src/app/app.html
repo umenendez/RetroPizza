@@ -1,13 +1,6 @@
 <section class="container py-4">
-
-    <app-navbar (textoBusqueda)="filtrarPorNombre($event)" />
-
+    <app-navbar />
     <app-header />
-
-    <app-pizza-list [textoBusqueda]="textoBusqueda" (cantidadPedido)="agregarAlPedido($event)">
-    </app-pizza-list>
-
-    <app-order-form [pedido]="pedido" (pedidoCompletado)="finalizarPedido()">
-    </app-order-form>
+    <router-outlet />
     <app-footer />
 </section>

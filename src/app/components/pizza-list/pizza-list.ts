@@ -1,35 +1,22 @@
-import { Component } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { PizzaCard } from '../pizza-card/pizza-card';
 import { Pizza } from '../../models/pizza.model';
-
-import { input, output } from '@angular/core';
-
-
+import { ItemPedido } from '../../models/item-pedido.model';
+import { PedidoService } from '../../services/pedido.service';
 
 @Component({
   selector: 'app-pizza-list',
   imports: [PizzaCard],
   templateUrl: './pizza-list.html',
   styleUrl: './pizza-list.scss'
-
 })
-
-
 export class PizzaList {
-  cantidadPedido = output<{
-  nombre: string;
-  precio: number;
-  cantidad: number;
-}>();
+  pedidoService = inject(PedidoService);
+  textoBusqueda = signal('');
 
-recibirPedido(item: {
-  nombre: string;
-  precio: number;
-  cantidad: number;
-}) {
-  this.cantidadPedido.emit(item);
-}
-
+  recibirPedido(item: ItemPedido) {
+    this.pedidoService.agregar(item);
+  }
 
   filtrarPizzas() {
     const texto = this.textoBusqueda().toLowerCase().trim();
@@ -42,9 +29,6 @@ recibirPedido(item: {
     );
   }
 
-
-
-  textoBusqueda = input<string>('');
   pizzas: Pizza[] = [
     {
       id: 1,
@@ -143,5 +127,4 @@ recibirPedido(item: {
       ]
     }
   ];
-
 }
