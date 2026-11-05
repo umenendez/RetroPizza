@@ -44,41 +44,43 @@
             </div>
         </div>
 
-        <div class="mb-3">
-            <label for="numeroTarjeta" class="form-label">Número de tarjeta</label>
-            <input type="text" class="form-control" id="numeroTarjeta" formControlName="tarjeta" maxlength="16"
-                inputmode="numeric" placeholder="Introduce los 16 dígitos">
+        @if (orderForm.controls.metodoPago.value === 'tarjeta') {
+            <div class="mb-3">
+                <label for="numeroTarjeta" class="form-label">Número de tarjeta</label>
+                <input type="text" class="form-control" id="numeroTarjeta" formControlName="tarjeta" maxlength="16"
+                    inputmode="numeric" placeholder="Introduce los 16 dígitos">
 
-            @if (tarjeta?.touched && tarjeta?.hasError('required')) {
-                <div class="text-danger">
-                    Debes introducir el número de tarjeta.
-                </div>
-            }
+                @if (tarjeta?.touched && tarjeta?.hasError('required')) {
+                    <div class="text-danger">
+                        Debes introducir el número de tarjeta.
+                    </div>
+                }
 
-            @if (tarjeta?.touched && tarjeta?.hasError('pattern')) {
-                <div class="text-danger">
-                    La tarjeta debe tener exactamente 16 dígitos.
-                </div>
-            }
-        </div>
+                @if (tarjeta?.touched && tarjeta?.hasError('pattern')) {
+                    <div class="text-danger">
+                        La tarjeta debe tener exactamente 16 dígitos.
+                    </div>
+                }
+            </div>
+        } @else {
+            <div class="mb-3">
+                <label for="numeroBizum" class="form-label">Número de móvil</label>
+                <input type="text" class="form-control" id="numeroBizum" formControlName="bizum" maxlength="9"
+                    inputmode="numeric" placeholder="Introduce los 9 dígitos">
 
-        <div class="mb-3">
-            <label for="numeroBizum" class="form-label">Número de móvil</label>
-            <input type="text" class="form-control" id="numeroBizum" formControlName="bizum" maxlength="9"
-                inputmode="numeric" placeholder="Introduce los 9 dígitos">
+                @if (bizum?.touched && bizum?.hasError('required')) {
+                    <div class="text-danger">
+                        Debes introducir el número de móvil.
+                    </div>
+                }
 
-            @if (bizum?.touched && bizum?.hasError('required')) {
-                <div class="text-danger">
-                    Debes introducir el número de móvil.
-                </div>
-            }
-
-            @if (bizum?.touched && bizum?.hasError('pattern')) {
-                <div class="text-danger">
-                    El móvil debe tener exactamente 9 dígitos.
-                </div>
-            }
-        </div>
+                @if (bizum?.touched && bizum?.hasError('pattern')) {
+                    <div class="text-danger">
+                        El móvil debe tener exactamente 9 dígitos.
+                    </div>
+                }
+            </div>
+        }
 
         <button type="submit" class="btn btn-secondary" [disabled]="totalPedido() === 0">
             Realizar pago
