@@ -6,7 +6,6 @@ Aplicación web de una pizzería hecha con Angular y Bootstrap.
 
 - **Listado:** muestra las pizzas, permite buscarlas por nombre o ingrediente y añadirlas al pedido indicando la cantidad.
 - **Pedido:** muestra las pizzas añadidas con el total, permite quitarlas y completar el pedido con hora, dirección y método de pago (tarjeta o Bizum).
-- La barra de navegación muestra el número de pizzas añadidas al pedido.
 
 ## Tecnologías
 
