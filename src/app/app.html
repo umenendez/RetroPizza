@@ -1,6 +1,31 @@
 <section class="container py-4">
-    <app-navbar />
-    <app-header />
-    <router-outlet />
-    <app-footer />
+    <app-navbar
+        [vistaActiva]="vista"
+        [unidadesPedido]="totalUnidades()"
+        (busquedaNA)="cambiarBusqueda($event)"
+        (vistaNA)="cambiarVista($event)">
+    </app-navbar>
+
+    <app-header (vistaHA)="cambiarVista($event)"></app-header>
+
+    <app-pizza-list
+        [hidden]="vista !== 'listado'"
+        [busquedaPl]="busquedaApp"
+        (cantidadPedido)="agregarItemAlPedido($event)">
+    </app-pizza-list>
+
+    <app-pedido
+        #pedido
+        [hidden]="vista !== 'pedido'"
+        [itemsPedido]="itemsPedido"
+        (itemQuitado)="quitarItem($event)">
+    </app-pedido>
+
+    <app-formulario-pago
+        [hidden]="vista !== 'pedido'"
+        [totalPedido]="pedido.total()"
+        (pagoRealizado)="finalizarPedido()">
+    </app-formulario-pago>
+
+    <app-footer></app-footer>
 </section>

@@ -1,5 +1,5 @@
-<div class="bg-light border rounded p-4 mb-4 text-center text-dark">
+<div class="bg-dark text-white border rounded p-4 mb-4 text-center">
     <h1>Pizzeria RetroPizza</h1>
     <p>Bienvenido a nuestra pizzería. Elige la pizza que más te guste.</p>
-    <a routerLink="/listado" class="btn btn-secondary">Ver pizzas</a>
+    <button type="button" class="btn btn-secondary" (click)="vistaHA.emit('listado')">Ver pizzas</button>
 </div>

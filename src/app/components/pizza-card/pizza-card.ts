@@ -20,6 +20,7 @@ export class PizzaCard {
     nombre: string;
     precio: number;
     cantidad: number;
+    imagen: string;
   }>();
 
   pedirPizza() {
@@ -30,7 +31,8 @@ export class PizzaCard {
     this.cantidadPedido.emit({
       nombre: this.nombre(),
       precio: this.precio(),
-      cantidad: this.cantidad
+      cantidad: this.cantidad,
+      imagen: this.imagen()
     });
   }
 }

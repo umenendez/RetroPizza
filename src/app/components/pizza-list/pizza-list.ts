@@ -1,8 +1,7 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, input, output } from '@angular/core';
 import { PizzaCard } from '../pizza-card/pizza-card';
 import { Pizza } from '../../models/pizza.model';
 import { ItemPedido } from '../../models/item-pedido.model';
-import { PedidoService } from '../../services/pedido.service';
 
 @Component({
   selector: 'app-pizza-list',
@@ -11,15 +10,12 @@ import { PedidoService } from '../../services/pedido.service';
   styleUrl: './pizza-list.scss'
 })
 export class PizzaList {
-  pedidoService = inject(PedidoService);
-  textoBusqueda = signal('');
+  busquedaPl = input('');
 
-  recibirPedido(item: ItemPedido) {
-    this.pedidoService.agregar(item);
-  }
+  cantidadPedido = output<ItemPedido>();
 
   filtrarPizzas() {
-    const texto = this.textoBusqueda().toLowerCase().trim();
+    const texto = this.busquedaPl().toLowerCase().trim();
 
     return this.pizzas.filter(pizza =>
       pizza.nombre.toLowerCase().includes(texto) ||
